@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-type HistoryCardProps = {
-  year: string;
-  title: string;
-  desc: string;
-};
 
 type TimelineItemProps = {
   year: string;
@@ -100,15 +95,6 @@ const TimelineItem = ({ year, title, desc, index }: TimelineItemProps) => {
   );
 };
 
-
-const HistoryCard = ({ year, title, desc }: HistoryCardProps) => (
-  <div className="relative pl-8 pb-12 border-l-2 border-gray-300 last:border-0 last:pb-0">
-    <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[#005eD2] ring-4 ring-white"></div>
-    <span className="text-[#005eD2] font-bold text-sm mb-1 block">{year}</span>
-    <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-    <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
-  </div>
-);
 
 const About = () => {
 
