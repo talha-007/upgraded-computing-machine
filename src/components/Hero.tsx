@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Award, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { certificationLogos } from "../constants/certificationLogos";
 
 type SlideAsset = {
   key: string;
@@ -89,7 +90,7 @@ const Hero = () => {
   return (
     <div
       id="home"
-      className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#0a0f1c] min-h-[80vh] flex items-center"
+      className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white min-h-[80vh] flex items-center"
     >
       <div className="absolute inset-0 z-0">
         {slides.map((slide, index) => {
@@ -155,6 +156,24 @@ const Hero = () => {
             >
               <Sparkles className="w-4 h-4 mr-2" /> AI Check
             </a>
+          </div>
+
+          <div className="mt-10 bg-white/80 border border-gray-200 rounded-2xl p-4 sm:p-5 backdrop-blur-md max-w-md shadow-sm">
+            <div className="text-gray-600 text-xs font-bold uppercase tracking-[0.3em] mb-4">
+              Certified By
+            </div>
+            <div className="flex flex-wrap items-center gap-6">
+              {certificationLogos.map((cert) => (
+                <img
+                  key={cert.name}
+                  src={cert.logo}
+                  alt={`${cert.name} logo`}
+                  className="h-8 md:h-10 object-contain opacity-80 hover:opacity-100 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
           </div>
         </div>
 

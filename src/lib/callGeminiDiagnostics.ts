@@ -1,7 +1,7 @@
 const apiKey = ""; // System provides key at runtime
 
 export const callGeminiDiagnostics = async (symptoms: string): Promise<string> => {
-  const systemPrompt = `You are a Senior Diesel Technician at Majeed Diesel Lab (established 1970, Delphi, Phinia & Hartridge certified). 
+  const systemPrompt = `You are a Senior Diesel Technician at Majeed Diesel Lab (established 1970, Delphi & Phinia certified, operating Hartridge ISO-standard OEM benches). 
   Analyze the user's reported diesel engine symptoms. 
   Focus on potential issues with the Fuel Injection System (Pumps, Injectors, Common Rail). 
   Provide 3 likely technical causes. 

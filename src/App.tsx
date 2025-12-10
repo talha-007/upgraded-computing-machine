@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 const App = () => (
-  <div className="bg-[#0f172a] min-h-screen text-slate-200 font-sans selection:bg-[#005eD2] selection:text-white">
+  <div className="bg-white min-h-screen text-gray-900 font-sans selection:bg-[#005eD2] selection:text-white">
     <Navbar />
     <Hero />
     <About />

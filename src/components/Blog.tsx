@@ -8,15 +8,15 @@ type BlogPostProps = {
 };
 
 const BlogPost = ({ title, date, excerpt, category }: BlogPostProps) => (
-  <article className="bg-[#0f172a] border border-slate-800 rounded-lg overflow-hidden flex flex-col hover:border-[#005eD2] transition-colors group">
-    <div className="h-48 bg-[#1e293b] relative flex items-center justify-center">
-      <FileText className="w-12 h-12 text-slate-700 group-hover:text-[#005eD2] transition-colors" />
-      <div className="absolute top-4 left-4 bg-[#0a0f1c]/90 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded border border-[#005eD2]/30">
+  <article className="bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col hover:border-[#005eD2] transition-colors group shadow-sm">
+    <div className="h-48 bg-gray-100 relative flex items-center justify-center">
+      <FileText className="w-12 h-12 text-gray-400 group-hover:text-[#005eD2] transition-colors" />
+      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-2 py-1 rounded border border-[#005eD2]/30">
         {category}
       </div>
     </div>
     <div className="p-6 flex-1 flex flex-col">
-      <div className="flex items-center text-slate-500 text-xs mb-3 space-x-3">
+      <div className="flex items-center text-gray-500 text-xs mb-3 space-x-3">
         <span className="flex items-center">
           <Calendar size={12} className="mr-1 text-[#005eD2]" /> {date}
         </span>
@@ -24,11 +24,11 @@ const BlogPost = ({ title, date, excerpt, category }: BlogPostProps) => (
           <User size={12} className="mr-1 text-[#005eD2]" /> Admin
         </span>
       </div>
-      <h3 className="text-xl font-bold text-white mb-3 hover:text-[#005eD2] transition-colors cursor-pointer">
+      <h3 className="text-xl font-bold text-gray-900 mb-3 hover:text-[#005eD2] transition-colors cursor-pointer">
         {title}
       </h3>
-      <p className="text-slate-400 text-sm mb-4 flex-1 line-clamp-3">{excerpt}</p>
-      <button className="text-[#ff1d1d] font-bold text-xs uppercase tracking-widest flex items-center hover:text-white transition-colors mt-auto">
+      <p className="text-gray-600 text-sm mb-4 flex-1 line-clamp-3">{excerpt}</p>
+      <button className="text-[#ff1d1d] font-bold text-xs uppercase tracking-widest flex items-center hover:text-[#ff1d1d]/80 transition-colors mt-auto">
         Read Article <ArrowRight size={12} className="ml-2" />
       </button>
     </div>
@@ -37,14 +37,14 @@ const BlogPost = ({ title, date, excerpt, category }: BlogPostProps) => (
 
 const Blog = () => {
   return (
-    <section id="blog" className="py-24 bg-[#0f172a] border-t border-slate-800">
+    <section id="blog" className="py-24 bg-white border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
           <div>
             <h2 className="text-[#005eD2] font-bold tracking-widest uppercase text-sm mb-3">Latest News</h2>
-            <h3 className="text-3xl md:text-4xl font-black text-white uppercase">Diesel Insights</h3>
+            <h3 className="text-3xl md:text-4xl font-black text-gray-900 uppercase">Diesel Insights</h3>
           </div>
-          <button className="hidden md:flex bg-[#1e293b] hover:bg-[#005eD2] text-white border border-slate-700 hover:border-[#005eD2] px-6 py-3 rounded font-bold text-sm uppercase tracking-wider transition-all items-center">
+          <button className="hidden md:flex bg-gray-100 hover:bg-[#005eD2] text-gray-900 hover:text-white border border-gray-300 hover:border-[#005eD2] px-6 py-3 rounded font-bold text-sm uppercase tracking-wider transition-all items-center">
             View All Posts <ArrowRight size={16} className="ml-2" />
           </button>
         </div>
@@ -71,7 +71,7 @@ const Blog = () => {
         </div>
 
         <div className="mt-8 md:hidden text-center">
-          <button className="bg-[#1e293b] hover:bg-[#005eD2] text-white border border-slate-700 px-6 py-3 rounded font-bold text-sm uppercase tracking-wider transition-all inline-flex items-center">
+          <button className="bg-gray-100 hover:bg-[#005eD2] text-gray-900 hover:text-white border border-gray-300 px-6 py-3 rounded font-bold text-sm uppercase tracking-wider transition-all inline-flex items-center">
             View All Posts <ArrowRight size={16} className="ml-2" />
           </button>
         </div>

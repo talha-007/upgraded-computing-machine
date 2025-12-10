@@ -28,17 +28,17 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 border-b border-transparent ${
         scrolled
-          ? "bg-[#0f172a]/95 backdrop-blur-md shadow-lg border-[#005eD2]/30 py-3"
+          ? "bg-white/95 backdrop-blur-md shadow-lg border-gray-200 py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-[#005eD2] rounded flex items-center justify-center shadow-lg shadow-blue-900/50">
+          <div className="w-10 h-10 bg-[#005eD2] rounded flex items-center justify-center shadow-lg shadow-blue-500/30">
             <Settings className="text-white h-6 w-6 animate-spin-slow" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl md:text-2xl font-black text-white tracking-tighter uppercase leading-none">
+            <span className={`text-xl md:text-2xl font-black ${scrolled ? "text-gray-900" : "text-white"} tracking-tighter uppercase leading-none`}>
               Majeed
             </span>
             <span className="text-xs font-bold text-[#ff1d1d] tracking-widest uppercase">
@@ -52,14 +52,14 @@ const Navbar = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-slate-300 hover:text-[#005eD2] font-medium transition-colors text-xs xl:text-sm uppercase tracking-wide"
+              className={`${scrolled ? "text-gray-700" : "text-slate-300"} hover:text-[#005eD2] font-medium transition-colors text-xs xl:text-sm uppercase tracking-wide`}
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="bg-[#ff1d1d] hover:bg-red-600 text-white px-5 py-2 rounded font-bold transition-all shadow-lg shadow-red-900/30 uppercase text-xs tracking-wider border border-transparent hover:border-white/20"
+            className="bg-[#ff1d1d] hover:bg-red-600 text-white px-5 py-2 rounded font-bold transition-all shadow-lg shadow-red-500/30 uppercase text-xs tracking-wider border border-transparent hover:border-gray-200"
           >
             Get Quote
           </a>
@@ -68,7 +68,7 @@ const Navbar = () => {
         <div className="lg:hidden">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white hover:text-[#ff1d1d] focus:outline-none transition-colors"
+            className="text-gray-900 hover:text-[#ff1d1d] focus:outline-none transition-colors"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -76,13 +76,13 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-[#0f172a] border-t border-[#005eD2]/30 p-4 shadow-xl max-h-[80vh] overflow-y-auto">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white border-t border-gray-200 p-4 shadow-xl max-h-[80vh] overflow-y-auto">
           <div className="flex flex-col space-y-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-slate-300 hover:text-[#005eD2] block px-3 py-2 rounded-md hover:bg-slate-800 font-medium"
+                className="text-gray-700 hover:text-[#005eD2] block px-3 py-2 rounded-md hover:bg-gray-100 font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
