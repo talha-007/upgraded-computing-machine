@@ -65,7 +65,9 @@ const Hero = () => {
           setLoadedSlides((prev) => (prev[slide.key] ? prev : { ...prev, [slide.key]: src }));
         }
       } catch (error) {
-        console.error(`Failed to load slide image ${slide.key}`, error);
+        if (import.meta.env.DEV) {
+          console.error(`Failed to load slide image ${slide.key}`, error);
+        }
       }
     };
 
@@ -108,11 +110,12 @@ const Hero = () => {
                   src={loadedSrc}
                   alt={slide.alt}
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  loading={index === 0 ? "eager" : "lazy"}
                   decoding="async"
+                  fetchPriority={index === 0 ? "high" : "low"}
                 />
               ) : (
-                <div className="w-full h-full bg-slate-900 animate-pulse" aria-hidden="true" />
+                <div className="w-full h-full bg-gray-200 animate-pulse" aria-hidden="true" />
               )}
               <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1c] via-[#0a0f1c]/90 to-[#0a0f1c]/40"></div>
             </div>

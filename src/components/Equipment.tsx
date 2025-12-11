@@ -5,6 +5,7 @@ import ift70Image from "../assets/images/machines/IFT-70.jpg";
 import hk1400Image from "../assets/images/machines/hk1400.webp";
 import hartridge2500Image from "../assets/images/machines/hartridge-2500.jpg";
 import hartridge800Image from "../assets/images/machines/hartridge-800.jpg";
+import hartridgePopTesterImage from "../assets/images/machines/pop tester.jpg";
 
 type EquipmentItemProps = {
   name: string;
@@ -79,8 +80,9 @@ const Equipment = () => {
                   src={criProImage}
                   alt="Hartridge CRI-Pro"
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchPriority="high"
                 />
               </div>
               <div className="absolute top-0 right-0 p-4 opacity-20">
@@ -114,7 +116,7 @@ const Equipment = () => {
             image={ift70Image}
           />
           <EquipmentItem 
-            name="Hartridge-PC 2" 
+            name="Hartridge-PC 2 (coming soon)" 
             desc="Computerized test bench for detailed pump calibration and testing." 
             badge="Test Bench" 
           />
@@ -135,6 +137,12 @@ const Equipment = () => {
             desc="Reliable mechanical pump testing solution for conventional systems." 
             badge="Classic"
             image={hartridge800Image}
+          />
+          <EquipmentItem 
+            name="Hartridge HH560 Injector Poptest 3" 
+            desc="The Hartridge HH560 Injector PopTest 3 is compact and portable, and perfect for ‘go/no-go’ testing. It is a simple unit for mechanical injector testing that performs reliably in any setting" 
+            badge="Classic"
+            image={hartridgePopTesterImage}
           />
         </div>
       </div>

@@ -56,13 +56,13 @@ const ServicesSection = () => {
       icon: Settings,
       relatedIcon: Cog, // The "related object" shown on hover
       title: "Diesel Pump Repair",
-      description: "Expert calibration and repair of mechanical diesel pumps for tractors, trucks, and generators."
+      description: "Expert calibration and repair of all type of diesel pumps for tractors, trucks, and generators."
     },
     {
       icon: Cpu,
       relatedIcon: Zap,
       title: "Electronic Injectors",
-      description: "Advanced diagnostics and repairing for modern Common Rail Injectors using the Hartridge CRI-Pro."
+      description: "Advanced testing and repair of CR Injectors, EUI, and EUP using Hartridge CRi-Pro, IFT-70, and HK-1400."
     },
     {
       icon: Activity,

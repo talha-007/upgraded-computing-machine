@@ -111,7 +111,7 @@ const About = () => {
     },
     {
       year: "2017",
-      title: "Millat Tractors Partner",
+      title: "Millat Tractors Ltd",
       desc: "Started offering specialized service in Millat Tractors Lahore, supporting the agricultural backbone of Pakistan."
     },
     {

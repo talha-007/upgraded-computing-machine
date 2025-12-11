@@ -1,4 +1,4 @@
-const apiKey = ""; // System provides key at runtime
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || ""; // Load from environment variable
 
 export const callGeminiDiagnostics = async (symptoms: string): Promise<string> => {
   const systemPrompt = `You are a Senior Diesel Technician at Majeed Diesel Lab (established 1970, Delphi & Phinia certified, operating Hartridge ISO-standard OEM benches). 
@@ -31,7 +31,9 @@ export const callGeminiDiagnostics = async (symptoms: string): Promise<string> =
     const data = await response.json();
     return data.candidates?.[0]?.content?.parts?.[0]?.text || "Unable to generate diagnosis at this time.";
   } catch (error) {
-    console.error("Gemini API Error:", error);
+    if (import.meta.env.DEV) {
+      console.error("Gemini API Error:", error);
+    }
     return "Diagnostic system currently offline. Please contact our workshop directly.";
   }
 };
