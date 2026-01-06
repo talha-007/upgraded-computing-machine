@@ -133,7 +133,7 @@ const Equipment = () => {
             image={hartridge2500Image}
           />
           <EquipmentItem 
-            name="Hartridge Test Bench 800" 
+            name="Hartridge Test Bench 600" 
             desc="Reliable mechanical pump testing solution for conventional systems." 
             badge="Classic"
             image={hartridge800Image}

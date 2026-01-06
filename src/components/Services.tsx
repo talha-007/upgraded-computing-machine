@@ -62,7 +62,7 @@ const ServicesSection = () => {
       icon: Cpu,
       relatedIcon: Zap,
       title: "Electronic Injectors",
-      description: "Advanced testing and repair of CR Injectors, EUI, and EUP using Hartridge CRi-Pro, IFT-70, and HK-1400."
+      description: "Advanced testing and repair of Common Rail Injectors, EUI, and EUP using Hartridge CRi-Pro, IFT-70, and HK-1400."
     },
     {
       icon: Activity,

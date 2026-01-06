@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, MessageCircle, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 const ContactInfoItem = ({ icon: Icon, title, content }: { icon: React.ElementType, title: string, content: React.ReactNode }) => (
   <div className="flex items-start group">
@@ -31,6 +31,51 @@ const WhatsAppButton = () => (
 );
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: 'Pump Repair',
+    message: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '8a8e2856-44b4-42a9-b3cd-2c406ce1e729',
+          subject: `New Inquiry: ${formData.service} - from ${formData.name}`,
+          from_name: 'Bhalwal Diesel Lab Website',
+          ...formData
+        })
+      });
+
+      const result = await response.json();
+      
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', phone: '', email: '', service: 'Pump Repair', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
   return (
     <>
       <section id="contact" className="py-32 bg-white relative border-t border-slate-100 overflow-hidden">
@@ -86,12 +131,16 @@ const Contact = () => {
                 <span className="ml-3 w-12 h-px bg-slate-200"></span>
               </h3>
 
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex flex-col space-y-2">
                     <label className="text-slate-500 text-xs font-bold uppercase tracking-wider ml-1">Name</label>
                     <input
                       type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       className="w-full bg-white border border-slate-200 text-slate-900 px-4 py-3 rounded-xl focus:outline-none focus:border-[#005eD2] focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-slate-300"
                       placeholder="Your Name"
                     />
@@ -100,6 +149,10 @@ const Contact = () => {
                     <label className="text-slate-500 text-xs font-bold uppercase tracking-wider ml-1">Phone</label>
                     <input
                       type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
                       className="w-full bg-white border border-slate-200 text-slate-900 px-4 py-3 rounded-xl focus:outline-none focus:border-[#005eD2] focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-slate-300"
                       placeholder="0300..."
                     />
@@ -110,6 +163,10 @@ const Contact = () => {
                   <label className="text-slate-500 text-xs font-bold uppercase tracking-wider ml-1">Email Address</label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-white border border-slate-200 text-slate-900 px-4 py-3 rounded-xl focus:outline-none focus:border-[#005eD2] focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-slate-300"
                     placeholder="name@example.com"
                   />
@@ -118,7 +175,12 @@ const Contact = () => {
                 <div className="flex flex-col space-y-2">
                   <label className="text-slate-500 text-xs font-bold uppercase tracking-wider ml-1">Service Required</label>
                   <div className="relative">
-                    <select className="w-full bg-white border border-slate-200 text-slate-900 px-4 py-3 rounded-xl focus:outline-none focus:border-[#005eD2] focus:ring-4 focus:ring-blue-500/10 transition-all appearance-none cursor-pointer">
+                    <select 
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full bg-white border border-slate-200 text-slate-900 px-4 py-3 rounded-xl focus:outline-none focus:border-[#005eD2] focus:ring-4 focus:ring-blue-500/10 transition-all appearance-none cursor-pointer"
+                    >
                       <option>Pump Repair</option>
                       <option>Injector Testing</option>
                       <option>Common Rail Service</option>
@@ -135,15 +197,46 @@ const Contact = () => {
                 <div className="flex flex-col space-y-2">
                   <label className="text-slate-500 text-xs font-bold uppercase tracking-wider ml-1">Message</label>
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     rows={4}
                     className="w-full bg-white border border-slate-200 text-slate-900 px-4 py-3 rounded-xl focus:outline-none focus:border-[#005eD2] focus:ring-4 focus:ring-blue-500/10 transition-all placeholder:text-slate-300 resize-none"
                     placeholder="Tell us about your vehicle or machine issue..."
                   ></textarea>
                 </div>
 
-                <button className="w-full bg-gradient-to-r from-[#ff1d1d] to-[#d91616] hover:from-[#d91616] hover:to-[#b91212] text-white font-bold py-4 rounded-xl shadow-lg shadow-red-500/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-center group">
-                  <Send className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-                  Send Request
+                {/* Status Messages */}
+                {status === 'success' && (
+                  <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700">
+                    <CheckCircle className="w-5 h-5 shrink-0" />
+                    <span className="font-medium">Message sent successfully! We'll get back to you soon.</span>
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    <span className="font-medium">Failed to send message. Please try again or contact us directly.</span>
+                  </div>
+                )}
+
+                <button 
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="w-full bg-gradient-to-r from-[#ff1d1d] to-[#d91616] hover:from-[#d91616] hover:to-[#b91212] text-white font-bold py-4 rounded-xl shadow-lg shadow-red-500/30 transition-all transform hover:-translate-y-0.5 flex items-center justify-center group disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
+                      Send Request
+                    </>
+                  )}
                 </button>
               </form>
             </div>
